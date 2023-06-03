@@ -97,7 +97,7 @@ depends = .doc/$(1) .install/$(1) .check/$(1) .test/$(1)
 ### Rules
 
 .PHONY: all install check test document shiny \
-+               check_base check_models check_modules \
+            check_base check_models check_modules \
 
 all: install document
 
