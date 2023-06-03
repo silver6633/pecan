@@ -104,7 +104,7 @@ all: install document
 
 check_base: $(BASE_C) 
 check_models: $(MODELS_C) 
-check_modules: $(BASE_C) $(MODULES_C) 
+check_modules: $(BASE_I) $(MODULES_C) 
 
 document: $(ALL_PKGS_D) .doc/base/all
 install: $(ALL_PKGS_I) .install/base/all
