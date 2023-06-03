@@ -189,7 +189,7 @@ jobs:
 
     # run PEcAn checks
     - name: check
-      run: make -j1 check_modules
+      run: make check_modules
       env:
         REBUILD_DOCS: "FALSE"
         RUN_TESTS: "FALSE"
