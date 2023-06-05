@@ -75,7 +75,19 @@ jobs:
     - name: Display running containers
       run: |
         docker-compose ps
-        curl --ipv4 http://localhost:3000
+        curl -v -X POST \
+          -F 'hostname=docker' \
+          -F 'modelid=1000000014' \
+          -F 'sitegroupid=1' \
+          -F 'siteid=772' \
+          -F 'sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)' \
+          -F 'pft[]=temperate.coniferous' \
+          -F 'start=2004/01/01' \
+          -F 'end=2004/12/31' \
+          -F 'input_met=AmerifluxLBL.SIPNET' \
+          -F 'email=' \
+          -F 'notes=' \
+          'http://pecan.ncsa.illinois.edu/pecan/04-runpecan.php'
 
     # run SIPNET test
     - name: integration test
