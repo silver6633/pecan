@@ -77,17 +77,17 @@ jobs:
         docker-compose ps
         curl -v -X POST \
           -F 'hostname=docker' \
-          -F 'modelid=1000000014' \
+          -F 'modelid=5000000002' \
           -F 'sitegroupid=1' \
           -F 'siteid=772' \
           -F 'sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)' \
           -F 'pft[]=temperate.coniferous' \
           -F 'start=2004/01/01' \
           -F 'end=2004/12/31' \
-          -F 'input_met=AmerifluxLBL.SIPNET' \
+          -F 'input_met=5000000005' \
           -F 'email=' \
           -F 'notes=' \
-          'http://localhost:6480/pecan/04-runpecan.php'
+          'http://localhost:80/pecan/04-runpecan.php'
 
     # run SIPNET test
     - name: integration test
