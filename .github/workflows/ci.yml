@@ -75,7 +75,7 @@ jobs:
     - name: Display running containers
       run: |
         docker-compose ps
-        curl http://localhost:8000
+        curl http://0.0.0.0:80
 
     # run SIPNET test
     - name: integration test
