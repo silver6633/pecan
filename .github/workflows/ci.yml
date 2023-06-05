@@ -87,7 +87,7 @@ jobs:
           -F 'input_met=AmerifluxLBL.SIPNET' \
           -F 'email=' \
           -F 'notes=' \
-          'http://localhost:8000/pecan/04-runpecan.php'
+          'http://localhost:6480/pecan/04-runpecan.php'
 
     # run SIPNET test
     - name: integration test
