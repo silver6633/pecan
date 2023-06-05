@@ -75,7 +75,7 @@ jobs:
     - name: Display running containers
       run: |
         docker-compose ps
-        curl -v -X POST \
+        curl  --ipv4 -v -X POST \
           -F 'hostname=docker' \
           -F 'modelid=5000000002' \
           -F 'sitegroupid=1' \
