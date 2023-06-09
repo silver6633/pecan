@@ -92,11 +92,11 @@ jobs:
     - name: Display running containers
       run: |
         docker-compose ps
-        docker network create --driver bridge Pecan-net
+        docker network inspect bridge
     # run SIPNET test
     - name: integration test
       run: |
-        curl -w '%{http_code}\n' -v -L -X  -H "Host: pecan.localhost"  'http://172.18.0.10/pecan/01-introduction.php'
+        curl -w '%{http_code}\n' -v -L -X  -H "Host: pecan.localhost"  'http://172.18.0.1/pecan/01-introduction.php'
 
 
 
