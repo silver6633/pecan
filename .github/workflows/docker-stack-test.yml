@@ -99,9 +99,21 @@ jobs:
     - name: integration test
       run: |
         
-         curl -w '%{http_code}\n' -v -H "Host: pecan.localhost" http://172.17.0.1/pecan/history.php
+       
 
 
 
 
-    
+          curl -v -X -L POST \
+          -F 'hostname=docker' \
+          -F 'modelid=1000000014' \
+          -F 'sitegroupid=1' \
+          -F 'siteid=772' \
+          -F 'sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)' \
+          -F 'pft[]=temperate.coniferous' \
+          -F 'start=2004/01/01' \
+          -F 'end=2004/12/31' \
+          -F 'input_met=AmerifluxLBL.SIPNET' \
+          -F 'email=' \
+          -F 'notes=' \
+          'http://pecan.localhost/pecan/04-runpecan.php'
