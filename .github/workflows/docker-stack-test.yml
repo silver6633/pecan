@@ -99,7 +99,7 @@ jobs:
     - name: integration test
       run: |
         
-         curl -w '%{http_code}\n' -v -H "Host: pecan.localhost" http://172.17.0.1/pecan/02-modelsite.php
+         curl -w '%{http_code}\n' -v -H "Host: pecan.localhost" http://172.17.0.1/pecan/04-runpecan.php
 
 
 
