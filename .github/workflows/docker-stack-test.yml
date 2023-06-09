@@ -93,33 +93,22 @@ jobs:
       run: |
         docker-compose ps
     # run SIPNET test
-    - name: Perform Curl Request
-      id: curl
+    - name: integration test
       run: |
-          response=$(curl -v -X POST -H "Host: pecan.localhost" \
-            -F 'hostname=docker' \
-            -F "modelid=${{ matrix.MODEL_ID }}" \
-            -F 'sitegroupid=1' \
-            -F 'siteid=772' \
-            -F 'sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)' \
-            -F 'pft[]=temperate.coniferous' \
-            -F 'start=2004/01/01' \
-            -F 'end=2004/12/31' \
-            -F 'input_met=AmerifluxLBL.SIPNET' \
-            -F 'email=' \
-            -F 'notes=' \
-            'http://172.17.0.1/pecan/04-runpecan.php' 2>&1)
-            
-          echo "$response"
-          echo "::set-output name=response::$response"
-          
-          if [[ $response == *"HTTP/1.1 307 Temporary Redirect"* ]]; then
-            echo "Request successful"
-          else
-            echo "Request failed"
-            exit 1
-          fi
-      
-    - name: Display Response
-      run: |
-        echo "Response: ${{ steps.curl.outputs.response }}"
+        curl -w '%{http_code}\n' -v -X POST -H "Host: pecan.localhost" \
+          -F 'hostname=docker' \
+          -F "modelid=${{ matrix.MODEL_ID }}" \
+          -F 'sitegroupid=1' \
+          -F 'siteid=772' \
+          -F 'sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)' \
+          -F 'pft[]=temperate.coniferous' \
+          -F 'start=2004/01/01' \
+          -F 'end=2004/12/31' \
+          -F 'input_met=AmerifluxLBL.SIPNET' \
+          -F 'email=' \
+          -F 'notes=' \
+          'http://172.17.0.1/pecan/04-runpecan.php'
+
+
+
+    
