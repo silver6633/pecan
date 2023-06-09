@@ -1,0 +1,112 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - Docker-Stack-Testing
+
+
+    tags:
+      - '*'
+
+  pull_request:
+
+  merge_group:
+
+  issue_comment:
+    types:
+      - created
+
+env:
+  R_LIBS_USER: /usr/local/lib/R/site-library
+  LC_ALL: en_US.UTF-8
+  NCPUS: 2
+  PGHOST: postgres
+  CI: true
+
+jobs:
+ 
+
+  # ----------------------------------------------------------------------
+  # SIPNET TESTS
+  # ----------------------------------------------------------------------
+  sipnet:
+    if: github.event_name != 'issue_comment' || startsWith(github.event.comment.body, '/build')
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        name:
+          - sipnet
+          - basgra
+          - ed2
+          - maespa
+          - biocro
+        include:
+          - name: sipnet
+            MODEL_ID: "1000000014"
+          - name: basgra
+            MODEL_ID: "99000000002"
+          - name: ed2
+            MODEL_ID: "1000000003"
+          - name: maespa
+            MODEL_ID: "1000000009"
+          - name: biocro
+            MODEL_ID: "99000000001"
+
+    services:
+      postgres:
+        image: mdillon/postgis:9.5
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    container: 
+      image: pecan/depends:R${{ matrix.R }}
+
+    steps:
+    # checkout source code
+    - name: work around https://github.com/actions/checkout/issues/766
+      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+    - uses: actions/checkout@v3
+      with:
+        set-safe-directory: false
+
+    - name: Set up Docker Compose
+      run: |
+          sudo apt-get update
+          sudo apt-get -y install docker-compose
+
+
+    - name: Build and run containers
+      run: |
+        docker-compose up -d
+
+    - name: Wait for services to start
+      run: |
+        sleep 60 # Adjust the duration as needed
+    
+    - name: Display running containers
+      run: |
+        docker-compose ps
+    # run SIPNET test
+    - name: integration test
+      run: |
+        curl -v -X POST -H "Host: pecan.localhost" \
+          -F 'hostname=docker' \
+          -F "modelid=${{ matrix.MODEL_ID }}" \
+          -F 'sitegroupid=1' \
+          -F 'siteid=772' \
+          -F 'sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)' \
+          -F 'pft[]=temperate.coniferous' \
+          -F 'start=2004/01/01' \
+          -F 'end=2004/12/31' \
+          -F 'input_met=AmerifluxLBL.SIPNET' \
+          -F 'email=' \
+          -F 'notes=' \
+          'http://172.17.0.1/pecan/04-runpecan.php'
+
+    
