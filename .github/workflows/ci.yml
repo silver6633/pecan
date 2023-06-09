@@ -76,6 +76,7 @@ jobs:
       run: |
         docker-compose ps
         docker network ls
+        docker network inspect bridge
 
 
     # run SIPNET test
