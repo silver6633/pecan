@@ -98,7 +98,7 @@ jobs:
     # run SIPNET test
     - name: integration test
       run: |
-             curl -w '%{http_code}\n' -L -v -X POST -H "Host: 172.17.0.1" \
+             curl -w '%{http_code}\n' -L -v -X POST -H "Host: pecan.localhost" \
               -F 'hostname=docker' \
               -F 'modelid=1000000014' \
               -F 'sitegroupid=1' \
