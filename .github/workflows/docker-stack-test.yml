@@ -95,19 +95,28 @@ jobs:
     # run SIPNET test
     - name: integration test
       run: |
-        curl -v -X POST -H "Host: pecan.localhost" \
-          -F 'hostname=docker' \
-          -F "modelid=${{ matrix.MODEL_ID }}" \
-          -F 'sitegroupid=1' \
-          -F 'siteid=772' \
-          -F 'sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)' \
-          -F 'pft[]=temperate.coniferous' \
-          -F 'start=2004/01/01' \
-          -F 'end=2004/12/31' \
-          -F 'input_met=AmerifluxLBL.SIPNET' \
-          -F 'email=' \
-          -F 'notes=' \
-          'http://172.17.0.1/pecan/04-runpecan.php'
+          response=$(curl -v -X POST -H "Host: pecan.localhost" \
+            -F 'hostname=docker' \
+            -F "modelid=${{ matrix.MODEL_ID }}" \
+            -F 'sitegroupid=1' \
+            -F 'siteid=772' \
+            -F 'sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)' \
+            -F 'pft[]=temperate.coniferous' \
+            -F 'start=2004/01/01' \
+            -F 'end=2004/12/31' \
+            -F 'input_met=AmerifluxLBL.SIPNET' \
+            -F 'email=' \
+            -F 'notes=' \
+            'http://172.17.0.1/pecan/04-runpecan.php' 2>&1)
+            
+          echo "$response"
+          
+          if [[ $response == *"HTTP/1.1 200 OK"* ]]; then
+            echo "Request successful"
+          else
+            echo "Request failed"
+            exit 1
+          fi
 
 
 
