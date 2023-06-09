@@ -92,6 +92,7 @@ jobs:
     - name: Display running containers
       run: |
         docker-compose ps
+        docker network create --driver bridge Pecan-net
     # run SIPNET test
     - name: integration test
       run: |
@@ -107,7 +108,7 @@ jobs:
           -F 'input_met=AmerifluxLBL.SIPNET' \
           -F 'email=' \
           -F 'notes=' \
-          'http://172.17.0.1/pecan/04-runpecan.php'
+          'http://172.18.0.1/pecan/04-runpecan.php'
 
 
 
