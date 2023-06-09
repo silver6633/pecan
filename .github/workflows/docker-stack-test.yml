@@ -115,4 +115,4 @@ jobs:
           -F 'input_met=AmerifluxLBL.SIPNET' \
           -F 'email=' \
           -F 'notes=' \
-          'http://172.17.0.1/pecan/01-introduction.php'
+          'http://172.17.0.1/pecan/04-runpecan.php'
