@@ -99,12 +99,11 @@ jobs:
     - name: integration test
       run: |
         
-       
 
 
 
 
-          curl -v -X -L POST \
+          curl -v -X -L POST -H "Host: pecan.localhost" \
           -F 'hostname=docker' \
           -F 'modelid=1000000014' \
           -F 'sitegroupid=1' \
@@ -116,4 +115,4 @@ jobs:
           -F 'input_met=AmerifluxLBL.SIPNET' \
           -F 'email=' \
           -F 'notes=' \
-          'http://pecan.localhost/pecan/04-runpecan.php'
+          'http://172.17.0.1/pecan/04-runpecan.php'
