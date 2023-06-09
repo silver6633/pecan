@@ -108,7 +108,7 @@ jobs:
           -F 'modelid=1000000014' \
           -F 'sitegroupid=1' \
           -F 'siteid=772' \
-          -F 'sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)' \
+          -F 'sitename=Niwot Ridge ForestLTER NWT1 (USNR1)' \
           -F 'pft[]=temperate.coniferous' \
           -F 'start=2004/01/01' \
           -F 'end=2004/12/31' \
