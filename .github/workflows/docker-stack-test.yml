@@ -93,13 +93,13 @@ jobs:
       run: |
         docker-compose ps
         docker network ls 
-        docker network inspect bridge
+        docker network inspect pecan_pecan
     # run SIPNET test
     # run SIPNET test
     - name: integration test
       run: |
         curl -w '%{http_code}\n' -v -L  -H "Host: pecan.localhost" \
-          'http://172.18.0.1'
+          'http://172.18.0.1/'
 
 
 
