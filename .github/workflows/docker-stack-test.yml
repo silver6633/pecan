@@ -96,6 +96,25 @@ jobs:
         docker network inspect bridge
     # run SIPNET test
     # run SIPNET test
+
+    - name: Deploy Stage
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'http://172.17.0.1/pecan/04-runpecan.php'
+        method: 'POST'
+        customHeaders: '{"Host": "pecan.localhost", "Content-Type": "multipart/form-data"}'
+        data: |
+          hostname=docker
+          modelid=1000000014
+          sitegroupid=1
+          siteid=772
+          sitename="Niwot Ridge Forest/LTER NWT1 (US-NR1)"
+          pft[]=temperate.coniferous
+          start=2004-01-01
+          end=2004-12-31
+          input_met=AmerifluxLBL.SIPNET
+          email=
+          notes=
     - name: integration test
       run: |
         
