@@ -98,4 +98,4 @@ jobs:
     # run SIPNET test
     - name: integration test
       run: |
-          curl -H "Host: pecan.localhost" http://172.17.0.1
+          curl -H "Host: pecan.localhost" http://localhost:9080/pecan/01-introduction.php
