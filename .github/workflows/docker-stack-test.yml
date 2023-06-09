@@ -109,4 +109,10 @@ jobs:
           -F 'notes=' \
           'http://172.17.0.1/pecan/04-runpecan.php'
 
+
+        curl -v "http://pecan.localhost/setups/edit.php?key=database&message=1"
+
+        curl -v "http://172.17.0.1/setups/edit.php?key=database&message=1"
+
+
     
