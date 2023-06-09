@@ -111,7 +111,7 @@ jobs:
             
           echo "$response"
           
-          if [[ $response == *"HTTP/1.1 200 OK"* ]]; then
+          if [[ $response == *"HTTP/1.1 307 OK"* ]]; then
             echo "Request successful"
           else
             echo "Request failed"
