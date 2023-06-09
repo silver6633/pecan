@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-curl -v -X POST  \
+curl -v -X POST -H "Host: pecan.localhost" \
     -F 'hostname=docker' \
     -F 'modelid=1000000014' \
     -F 'sitegroupid=1' \
@@ -13,4 +13,4 @@ curl -v -X POST  \
     -F 'input_met=AmerifluxLBL.SIPNET' \
     -F 'email=' \
     -F 'notes=' \
-    'http://172.17.0.1/pecan/04-runpecan.php'
+    'http://172.17.0.1/pecan/04-runpecan.php' 
