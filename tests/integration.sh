@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-curl -v -X POST -H "Host: pecan.localhost" \
+curl -v -X POST  \
     -F 'hostname=docker' \
     -F 'modelid=1000000014' \
     -F 'sitegroupid=1' \
