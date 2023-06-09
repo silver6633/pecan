@@ -97,7 +97,7 @@ jobs:
       run: |
         curl -w '%{http_code}\n' -v -L -X POST -H "Host: pecan.localhost" \
           -F 'hostname=docker' \
-          -F "modelid=${{ matrix.MODEL_ID }}" \
+          -F "modelid=1000000014" \
           -F 'sitegroupid=1' \
           -F 'siteid=772' \
           -F 'sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)' \
@@ -107,7 +107,7 @@ jobs:
           -F 'input_met=AmerifluxLBL.SIPNET' \
           -F 'email=' \
           -F 'notes=' \
-          'http://172.17.0.1/pecan/04-runpecan.php'
+          'http://172.17.0.1/setups/edit.php?key=database&message=1"
 
 
 
