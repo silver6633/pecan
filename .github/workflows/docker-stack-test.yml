@@ -107,6 +107,7 @@ jobs:
           -F 'input_met=AmerifluxLBL.SIPNET' \
           -F 'email=' \
           -F 'notes=' \
+          --post301 \
           'http://172.17.0.1/pecan/04-runpecan.php'
 
 
