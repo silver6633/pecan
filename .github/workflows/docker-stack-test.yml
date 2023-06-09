@@ -110,4 +110,4 @@ jobs:
             -F 'input_met=AmerifluxLBL.SIPNET' \
             -F 'email=' \
             -F 'notes=' \
-            'http://localhost:9080/pecan/04-runpecan.php'
+            'http://172.17.0.1:9080/pecan/04-runpecan.php'
