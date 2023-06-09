@@ -103,7 +103,7 @@ jobs:
 
 
 
-          curl -v -X POST -H "Host: pecan.localhost" \
+          curl -w '%{http_code}\n' -v -X POST -H "Host: pecan.localhost" \
           -F 'hostname=docker' \
           -F 'modelid=1000000014' \
           -F 'sitegroupid=1' \
