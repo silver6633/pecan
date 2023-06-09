@@ -22,7 +22,7 @@ services:
     security_opt:
       - no-new-privileges:true
     ports:
-      - "${TRAEFIK_HTTP_PORT-80}:9080"
+      - "${TRAEFIK_HTTP_PORT-80}:80"
     volumes:
       - "traefik:/config"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
