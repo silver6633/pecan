@@ -26,3 +26,4 @@ for f in ${NAME}.*.xml; do
     fi
     rm -rf output.log pecan
 done
+

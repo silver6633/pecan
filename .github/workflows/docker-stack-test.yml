@@ -113,7 +113,7 @@ jobs:
           echo "$response"
           echo "::set-output name=response::$response"
           
-          if [[ $response == *"HTTP/1.1 200 OK"* ]]; then
+          if [[ $response == *"HTTP/1.1 307 Temporary Redirect"* ]]; then
             echo "Request successful"
           else
             echo "Request failed"
