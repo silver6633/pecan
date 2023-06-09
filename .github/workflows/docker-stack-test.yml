@@ -93,7 +93,7 @@ jobs:
       run: |
         docker-compose ps
         docker network ls 
-        docker network inspect host
+        docker network inspect bridge
     # run SIPNET test
     # run SIPNET test
     - name: integration test
