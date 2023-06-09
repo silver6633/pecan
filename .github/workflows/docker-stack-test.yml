@@ -110,8 +110,5 @@ jobs:
           'http://172.17.0.1/pecan/04-runpecan.php'
 
 
-        curl -v -H "Host: pecan.localhost" "http://172.17.0.1/pecan/history.php"
-
-
 
     
