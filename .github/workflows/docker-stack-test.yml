@@ -95,7 +95,7 @@ jobs:
     # run SIPNET test
     - name: integration test
       run: |
-        curl -w '%{http_code}\n' -v -X POST -H "Host: pecan.localhost" \
+        curl -w '%{http_code}\n' -v -L -X POST -H "Host: pecan.localhost" \
           -F 'hostname=docker' \
           -F "modelid=${{ matrix.MODEL_ID }}" \
           -F 'sitegroupid=1' \
@@ -107,7 +107,6 @@ jobs:
           -F 'input_met=AmerifluxLBL.SIPNET' \
           -F 'email=' \
           -F 'notes=' \
-          --post301 \
           'http://172.17.0.1/pecan/04-runpecan.php'
 
 
